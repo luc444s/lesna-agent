@@ -2,6 +2,7 @@ import { Plugin } from "@opencode/plugin"
 import { registerMcps } from "./mcp"
 import { registerProfile } from "./profile"
 import { buildSkills } from "./skills"
+import { mostrarImagen } from "./tools/imagen"
 
 const instruction = `Act as Lesna Agent: an orchestration-focused coding partner for Lesna.ai.
 Prioritize concrete execution, concise planning, preserving user work, and making changes that can be verified.`
@@ -26,6 +27,22 @@ export default Plugin.define({
 
     await ctx.mcp.transform((editor) => {
       registerMcps(editor)
+    })
+
+    await ctx.tool.transform((editor) => {
+      editor.namespace({
+        name: "lesna",
+        description: "Herramientas de Lesna Agent",
+      })
+      editor.add({
+        ...mostrarImagen,
+        name: "mostrar_imagen",
+        // codemode:false saca la tool del runtime restringido de Code Mode.
+        // Invocada desde ahi llega como `execute` y el chat no la pinta; como
+        // tool de primer nivel usa el renderer normal, que ya sabe mostrar los
+        // Tool.FileContent.
+        options: { namespace: "lesna", codemode: false },
+      })
     })
 
     await registerProfile(ctx)
