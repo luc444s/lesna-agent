@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "name": "lesna-agent",
+  "version": "0.0.0",
+  "description": "Lesna Agent plugin for OpenCode",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luc444s/lesna-agent.git",
+    "directory": "packages/plugins/lesna-agent"
+  },
+  "exports": {
+    ".": "./index.ts",
+    "./server": "./index.ts"
+  },
+  "files": [
+    "index.ts",
+    "mcp.ts",
+    "profile.ts",
+    "profile.md",
+    "secrets.ts",
+    "skills.ts",
+    "skills",
+    "skills-source.json"
+  ],
+  "scripts": {
+    "test": "bun test",
+    "typecheck": "tsgo --noEmit"
+  },
+  "dependencies": {
+    "gray-matter": "4.0.3"
+  },
+  "peerDependencies": {
+    "@opencode/plugin": "^2.0.27 || ^0.0.0-dev"
+  },
+  "devDependencies": {
+    "@tsconfig/bun": "1.0.9",
+    "@types/bun": "1.4.0",
+    "@typescript/native-preview": "7.0.0-dev.20251207.1"
+  }
+}
