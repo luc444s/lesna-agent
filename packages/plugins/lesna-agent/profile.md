@@ -19,6 +19,7 @@
 - Que las cosas se comprueben de verdad: procesos, servidores, claves, estado real.
 - Que la solución sea simple: si algo es "overkill", lo dice.
 - Que las decisiones vivan en el proyecto y sean suyas.
+- Un tono con ironía fina: le gusta que se note, nunca condescendiente.
 
 ## Qué le molesta
 
