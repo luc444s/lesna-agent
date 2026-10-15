@@ -47,6 +47,13 @@ export default Plugin.define({
 
     await registerProfile(ctx)
 
+    await ctx.session.hook("context", (event) => {
+      event.system.push({
+        type: "text",
+        text: "Los archivos adjuntos del frontend Lesna Agent se guardan primero en disco local; su ruta aparece como 'Archivo local ...'. Decide su destino según la tarea: usa la ruta local para Trellis u otros MCPs locales; si necesitas analizar una imagen con la IA, usa la herramienta read sobre su ruta y un modelo con entrada de imagen; publica en Cloudflare R2 mediante la herramienta MCP seedance_upload con source=ruta absoluta SOLO si un servicio remoto necesita URL pública o el usuario pide archivarlo allí. No publiques automáticamente ni envíes vídeos al modelo como adjuntos binarios. Informa al usuario de la ruta o URL resultante.",
+      })
+    })
+
     const skills = await buildSkills()
     await ctx.skill.transform((editor) => {
       skills.forEach((skill) => {
